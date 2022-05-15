@@ -144,35 +144,42 @@ void Resize_Image::resize_image(const HttpRequestPtr &req,
 		auto resp=HttpResponse::newHttpJsonResponse(ret);
 		callback(resp);
 	}
+	else
+	{
 	
-	/*
-	LOG_DEBUG << "isi imgbase64: " << pImageSrc.input_jpeg << "  end";
-	LOG_DEBUG << "isi target_width: " << pImageSrc.desired_width << "  end";
-	LOG_DEBUG << "isi target_height: " << pImageSrc.desired_height << "  end";
-	*/
-	
-	Image_Converter img_converter;
-	std::string imgbase64, imgbase64_out;
-	
-	Mat image_out;
-	Mat image_resized;
-	
-	image_out = img_converter.str2mat(pImageSrc.input_jpeg);
-	
-	//resize 
-	resize(image_out, image_resized, Size(pImageSrc.desired_width, pImageSrc.desired_height), INTER_LINEAR);
-	imgbase64_out = img_converter.mat2str(image_resized);
-	
-	
-    //Authentication algorithm, read database, verify identity, etc...
-    //...
-	//ImageSrc imgSrc = (*pImageSrc);
-	
+		/*
+		LOG_DEBUG << "isi imgbase64: " << pImageSrc.input_jpeg << "  end";
+		LOG_DEBUG << "isi target_width: " << pImageSrc.desired_width << "  end";
+		LOG_DEBUG << "isi target_height: " << pImageSrc.desired_height << "  end";
+		*/
+		
+		//Image_Converter img_converter;
+	        unique_ptr<Image_Converter> img_converter(new Image_Converter());
+		std::string imgbase64, imgbase64_out;
+		
+		Mat image_out;
+		Mat image_resized;
+		
+		//image_out = img_converter.str2mat(pImageSrc.input_jpeg);
+	        image_out = img_converter->str2mat( pImageSrc.input_jpeg);
+		
+		//resize 
+		resize(image_out, image_resized, Size(pImageSrc.desired_width, pImageSrc.desired_height), INTER_LINEAR);
+		//imgbase64_out = img_converter.mat2str(image_resized);
+	        imgbase64_out = img_converter->mat2str(image_resized);
+		
+		
+	    //Authentication algorithm, read database, verify identity, etc...
+	    //...
+		//ImageSrc imgSrc = (*pImageSrc);
+		
 
-	ret["code"]="200";
-	ret["message"]="success";
-	ret["output_jpeg"]= imgbase64_out;
-    auto resp=HttpResponse::newHttpJsonResponse(ret);
-    callback(resp);
+		ret["code"]="200";
+		ret["message"]="success";
+		ret["output_jpeg"]= imgbase64_out;
+	        auto resp=HttpResponse::newHttpJsonResponse(ret);
+	        callback(resp);
+	}
+	
 	
 }
