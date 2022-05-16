@@ -22,8 +22,10 @@ DROGON_TEST(RemoteAPITest)
    int desired_height;
 
    //req->setPath("/resize_image/");
-   std::ifstream is ("encode.bin", std::ifstream::binary);
-   if (is) {
+   std::ifstream is ("encode1.bin", std::ifstream::binary);
+   REQUIRE( is.is_open());
+   // if (is) 
+   // {
         is.seekg (0, is.end);
         int length = is.tellg();
         is.seekg (0, is.beg);
@@ -37,28 +39,19 @@ DROGON_TEST(RemoteAPITest)
 
         Json::Value ret;        
          
-        //ret["input_jpeg"]= imgbase64;
 	ret["desired_height"]=desired_height;		
         ret["desired_width"]= desired_width;
         ret["input_jpeg"]=imgbase64;
-        //ret["desired_height"]= desired_height;
         
-       //req.newHttpJsonRequest(ret); 
-       //auto req1=HttpRequest::newHttpJsonRequest(ret);
+        
        auto req  =  HttpRequest::newCustomHttpRequest(ret);
        req->setPath("/resize_image/");  
        req->setMethod(Post);
  
-       //req->jsonObject(req1);   
-       //all_headers = req->headers();
        // LOG_DEBUG << " isi json= " << req->getBody() << " end";             
        // LOG_DEBUG << " isi client host= " << client->getHost() << " end";     
 
-       // CHECK(req->path() == "/resize_image/");
-       // CHECK(req->contentType() == CT_APPLICATION_JSON);
        client->sendRequest(req, [TEST_CTX](ReqResult res, const HttpResponsePtr& resp) {
-       		// LOG_DEBUG << " ReqResult= " << ReqResult::Ok << " end";
-                // LOG_DEBUG << " resp != nullptr " <<  (resp != nullptr) << " end";
 
                 REQUIRE(res == ReqResult::Ok);
        		REQUIRE(resp != nullptr);
@@ -66,7 +59,8 @@ DROGON_TEST(RemoteAPITest)
        		CHECK(resp->getStatusCode() == k200OK);
        		CHECK(resp->contentType() == CT_APPLICATION_JSON);
    	});
-   }
+   //}
+     
      
 }
 
