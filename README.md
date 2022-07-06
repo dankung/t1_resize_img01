@@ -33,3 +33,11 @@ Content-Type: application/json
   "code": 4xx/5xx,
   "Message": "[output error description here]"
 }
+
+Requirements:
+1. Drogon Framework 
+    https://drogon.docsforge.com/master/installation/
+2. OpenCV 4.xx
+3. CMake 3.2.x
+
+This program is tested under Linux Ubuntu 20 LTS,running on VirtualBox Windows 10 Hosts
