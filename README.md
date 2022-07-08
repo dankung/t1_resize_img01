@@ -1,3 +1,4 @@
+t1_resize_img01:
 
 Create a simple HTTP server application that listens on port 8080 to serves a
 specific function: resizing a jpeg image, in the form of base 64 encoded binary input data
