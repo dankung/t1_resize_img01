@@ -10,6 +10,7 @@ Input Payload:
 Content-Type: application/json
 {
 "input_jpeg": "[base 64 encoding of jpeg binary]",
+
 "target_width": [target_width],
 "target_height": [target_height]
 }
