@@ -41,6 +41,73 @@ Requirements:
 2. OpenCV 4.xx
 3. CMake 3.2.x
 
+
+Environment
+-------------------------------------------------------------------------
+$ sudo apt install git
+$ sudo apt install gcc
+$ sudo apt install g++
+$ sudo apt install cmake
+
+
+jsoncpp
+-------------------------------------------------------------------------
+$ sudo apt install libjsoncpp-dev
+
+uuid
+-------------------------------------------------------------------------
+$ sudo apt install uuid-dev
+
+OpenSSL
+-------------------------------------------------------------------------
+$ sudo apt install openssl
+$ sudo apt install libssl-dev
+
+zlib
+-------------------------------------------------------------------------
+$ sudo apt install zlib1g-dev
+
+Database Environment
+-------------------------------------------------------------------------
+
+PostgreSQL
+-------------------------------------------------------------------------
+$ sudo apt-get install postgresql-all
+
+$ su postgres
+# 
+
+Sqlite3
+-------------------------------------------------------------------------
+$ sudo apt-get install libsqlite3-dev
+
+Drogon Installation
+-------------------------------------------------------------------------
+Assuming that the above environment and library dependencies are all ready, the installation process is very simple;
+Install by source in Linux
+
+-------------------------------------------------------------------------
+$cd $WORK_PATH
+$ git clone https://github.com/an-tao/drogon
+$ cd drogon
+$ git submodule update --init
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make && sudo make install
+-------------------------------------------------------------------------
+
+The default is to compile the debug version. If you want to compile the release version, the cmake command should take the following parameters:
+cmake -DCMAKE_BUILD_TYPE=Release .. 
+
+After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
+
+    The header file of drogon is installed into /usr/local/include/drogon;
+    The drogon library file libdrogon.a is installed into /usr/local/lib;
+    Drogon's command line tool drogon_ctl is installed into /usr/local/bin;
+    The trantor header file is installed into /usr/local/include/trantor;
+    The trantor library file libtrantor.a is installed into /usr/local/lib;
+
 Building OpenCV from Source on Linux ( Ubuntu 20.0 LTS )
 ----------------------------------------------------------------------------------------------------------------------------------
 $ sudo apt update
