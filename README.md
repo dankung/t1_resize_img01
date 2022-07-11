@@ -45,8 +45,11 @@ Requirements:
 Environment
 -------------------------------------------------------------------------
 $ sudo apt install git
+
 $ sudo apt install gcc
+
 $ sudo apt install g++
+
 $ sudo apt install cmake
 
 
@@ -61,6 +64,7 @@ $ sudo apt install uuid-dev
 OpenSSL
 -------------------------------------------------------------------------
 $ sudo apt install openssl
+
 $ sudo apt install libssl-dev
 
 zlib
@@ -88,12 +92,20 @@ Install by source in Linux
 
 -------------------------------------------------------------------------
 $cd $WORK_PATH
+
 $ git clone https://github.com/an-tao/drogon
+
 $ cd drogon
+
 $ git submodule update --init
+
+
 $ mkdir build
+
 $ cd build
+
 $ cmake ..
+
 $ make && sudo make install
 -------------------------------------------------------------------------
 
